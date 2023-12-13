@@ -77,3 +77,24 @@ Now, you can create subfolder in here. see more detail in https://makandracards.
 
 7. create `serializers.py`, `filters.py`, `permissions.py` and `urls.py`
 - edit `views.py`, `serializers.py`, `urls.py` and main `urls.py`
+
+
+8. to make image upload to media path and have urlpattern to access, follow this step
+```py
+# settings.py
+STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
+MEDIA_ROOT=os.path.join(BASE_DIR, "media")
+
+
+# urls.py (add 3 lines below)
+...
+from django.conf import settings
+from django.conf.urls.static import static
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+..
+
+```
+
+https://stackoverflow.com/questions/35475519/django-rest-framework-api-image-url-is-not-returning-properly 
