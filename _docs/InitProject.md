@@ -98,3 +98,7 @@ urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 ```
 
 https://stackoverflow.com/questions/35475519/django-rest-framework-api-image-url-is-not-returning-properly 
+
+9. add jwt login  
+
+https://django-rest-framework-simplejwt.readthedocs.io/en/latest/ 
