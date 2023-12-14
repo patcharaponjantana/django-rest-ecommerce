@@ -24,6 +24,9 @@ class ProductCategory(TimestampableMixin):
     name = models.CharField(max_length=100)
     icon = models.ImageField(upload_to=category_image_path, blank=True)
 
+    def __str__(self) -> str:
+        return self.name
+
 class Product(TimestampableMixin):
     seller = models.ForeignKey(
         settings.AUTH_USER_MODEL, 
@@ -39,3 +42,7 @@ class Product(TimestampableMixin):
         related_name='product_list',
         on_delete=models.SET(get_default_product_category),
     )
+    quantity = models.IntegerField()
+
+    def __str__(self) -> str:
+        return f'{self.seller.username} - {self.name}'
