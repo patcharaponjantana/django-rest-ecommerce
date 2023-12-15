@@ -40,10 +40,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # plugin
     'rest_framework',
     'rest_framework_simplejwt',
     'corsheaders',
     'django_filters',
+    "debug_toolbar",
+
+    # app
     'api.product',
     'api.order',
 ]
@@ -57,6 +62,9 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
+
+    # plugin
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
 
 ROOT_URLCONF = 'django_ecommerce.urls'
@@ -158,3 +166,9 @@ REST_FRAMEWORK = {
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(days=1),
 }
+
+# for django debug toolbar
+INTERNAL_IPS = [
+    "127.0.0.1",
+    'localhost'
+]

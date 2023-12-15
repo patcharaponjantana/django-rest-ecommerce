@@ -3,12 +3,15 @@ from api.order.models import Order, OrderItem
 from api.product.serializers import ProductReadSerializer
 
 class OrderItemSerializer(serializers.ModelSerializer):
+    # product = ProductReadSerializer()
+
     class Meta:
         model = OrderItem
         fields = '__all__'
         read_only_fields = ["order"]
 
 class OrderReadSerializer(serializers.ModelSerializer):
+    buyer = serializers.CharField(source="buyer.username", read_only=True)
     order_items = OrderItemSerializer(many=True)
 
     class Meta:
