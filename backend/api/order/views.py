@@ -3,7 +3,7 @@ from api.order.models import Order, OrderItem
 from api.order import serializers 
 
 class OrderViewSet(viewsets.ModelViewSet):
-    queryset = Order.objects.all()
+    queryset = Order.objects.all().prefetch_related('order_items', 'buyer')
     # serializer_class = serializers.OrderReadSerializer
     permission_classes = [permissions.IsAuthenticated]
 
@@ -13,7 +13,7 @@ class OrderViewSet(viewsets.ModelViewSet):
         return serializers.OrderReadSerializer
 
 class OrderItemViewSet(viewsets.ModelViewSet):
-    queryset = OrderItem.objects.all()
+    queryset = OrderItem.objects.all().prefetch_related('order__buyer')
     serializer_class = serializers.OrderItemSerializer
     permission_classes = [permissions.IsAuthenticated]
 
