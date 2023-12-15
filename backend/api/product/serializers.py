@@ -36,3 +36,13 @@ class ProductWriteSerializer(serializers.ModelSerializer):
         product = Product.objects.create(**validated_data, category=instance)
 
         return product
+    
+    def update(self, instance, validated_data):
+        # if we receive category, get or create it first and replace with the old one
+        if 'category' in validated_data:
+            category = validated_data.pop('category')
+            category_instance, created = ProductCategory.objects.get_or_create(**category)
+            validated_data['category'] = category_instance
+
+        instance = super().update(instance, validated_data)
+        return instance
