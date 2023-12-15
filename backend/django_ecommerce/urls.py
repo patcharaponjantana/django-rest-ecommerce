@@ -34,7 +34,8 @@ urlpatterns = [
     path('api/token/verify/', TokenVerifyView.as_view(), name='token_verify'),
 
     # api
-    path('api/product/', include("api.product.urls"))
+    path('api/product/', include("api.product.urls")),
+    path('api/order/', include('api.order.urls'))
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

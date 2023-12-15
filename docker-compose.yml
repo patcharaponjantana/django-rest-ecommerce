@@ -15,6 +15,9 @@ services:
     backend:
         container_name: ${PROJECT_NAME}-backend
         build: ./backend
+        command: sh runserver.sh
+        # depends_on:
+        #     - db
         volumes: 
             - ./backend:/backend
         ports: 
