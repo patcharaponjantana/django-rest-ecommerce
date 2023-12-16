@@ -13,9 +13,12 @@ class OrderViewSet(viewsets.ModelViewSet):
         return serializers.OrderReadSerializer
 
 class OrderItemViewSet(viewsets.ModelViewSet):
-    queryset = OrderItem.objects.all().prefetch_related('order__buyer')
+    queryset = OrderItem.objects.all()
     serializer_class = serializers.OrderItemSerializer
     permission_classes = [permissions.IsAuthenticated]
+
+    # def get_queryset(self):
+    #     return super().get_queryset()
 
 
 
